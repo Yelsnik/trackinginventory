@@ -15,11 +15,13 @@ var testQueries *Queries
 
 func TestMain(m *testing.M) {
 
+	// load config
 	config, err := util.LoadConfig("../..")
 	if err != nil {
 		log.Fatal("cannot load config:", err)
 	}
 
+	// connect to db
 	testDB, err := sql.Open(config.DBDRIVER, config.DBSOURCE)
 
 	if err != nil {

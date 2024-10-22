@@ -28,7 +28,7 @@ func (maker *JWTMaker) CreateToken(ownerID int64, duration time.Duration) (strin
 		return "", err
 	}
 
-	jwtToken := jwt.NewWithClaims(jwt.SigningMethodES256, payload)
+	jwtToken := jwt.NewWithClaims(jwt.SigningMethodHS256, payload)
 	return jwtToken.SignedString([]byte(maker.secretKey))
 }
 
