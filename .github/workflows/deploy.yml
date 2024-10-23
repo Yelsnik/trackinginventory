@@ -14,6 +14,9 @@ jobs:
     name: Build image
     runs-on: ubuntu-latest
 
+    permissions:
+     id-token: write # This is required for requesting the JWT
+     contents: read # This is required for actions/checkout
     
     steps:
     - name: Checkout repo
@@ -22,8 +25,8 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
       with:
-        role-to-assume: arn:aws:iam::565393024816:user/github-ci
-        aws-region: us-east-1
+        role-to-assume: arn:aws:iam::565393024816:role/github-ci
+        aws-region: eu-north-1
     
     - name: Login to Amazon ECR
       id: login-ecr
