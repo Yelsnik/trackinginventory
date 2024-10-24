@@ -2,19 +2,22 @@
 
 set -e 
 
-echo "run db migration"
+echo "Fetching secrets from AWS Secrets Manager"
+aws secretsmanager get-secret-value --secret-id tracking_inventory \
+  --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > /app/app.env
 
-# Load environment variables
-. /app/app.env || { echo "Failed to load /app/app.env"; exit 1; }
-
-# Check if DB_SOURCE is populated
-if [ -z "$DB_SOURCE" ]; then
-  echo "Error: DB_SOURCE is not set or empty"
+# Verify that app.env is populated
+if [ ! -s /app/app.env ]; then
+  echo "Error: app.env is empty or missing"
   exit 1
-else
-  echo "DB_SOURCE is: $DB_SOURCE"
 fi
 
+echo "Loaded environment variables:"
+cat /app/app.env
+
+
+echo "run db migration"
+. /app/app.env
 /app/migrate -path /app/migration -database "$DB_SOURCE" -verbose up 
 
 echo "start the app"
