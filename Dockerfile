@@ -17,7 +17,6 @@ COPY start.sh .
 COPY wait-for.sh .
 COPY db/migration ./migration
 
-RUN apk add --no-cache bash jq aws-cli
 RUN chmod +x /app/start.sh
 
 EXPOSE 8080
