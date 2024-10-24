@@ -13,7 +13,7 @@ services:
     ports:
       - "8080:8080"
     environment: 
-      - DB_SOURCE=postgresql://root:mahanta@postgres:5432/tracking_inventory?sslmode=disable
+      - DB_SOURCE=postgresql://root:gJdMA1qKEm5JL2W4zAmf@tracking-inventory.c3kou0iw8g5f.eu-north-1.rds.amazonaws.com:5432/tracking_inventory
     depends_on:
       - postgres
     entrypoint: ["/app/wait-for.sh", "postgres:5432", "--", "/app/start.sh"]
