@@ -2,8 +2,10 @@
 
 set -e 
 
+AWS_REGION=${AWS_REGION:-"eu-north-1"}
+
 echo "Fetching secrets from AWS Secrets Manager"
-aws secretsmanager get-secret-value --secret-id tracking_inventory \
+aws secretsmanager get-secret-value --region "$AWS_REGION" --secret-id tracking_inventory \
   --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > /app/app.env
 
 # Verify that app.env is populated
