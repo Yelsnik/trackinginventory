@@ -3,7 +3,6 @@ FROM golang:1.23-alpine3.20 AS builder
 WORKDIR /app
 COPY . .
 RUN go build -o main main.go
-RUN apk add --no-cache bash jq aws-cli
 RUN apk add curl
 RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.12.2/migrate.linux-amd64.tar.gz  | tar xvz
 
@@ -18,6 +17,7 @@ COPY start.sh .
 COPY wait-for.sh .
 COPY db/migration ./migration
 
+RUN apk add --no-cache bash jq aws-cli
 RUN chmod +x /app/start.sh
 
 EXPOSE 8080
