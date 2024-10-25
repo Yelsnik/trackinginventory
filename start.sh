@@ -4,16 +4,21 @@ set -e
 
 file="/app/app.env"
 
-echo "run db migration"
+echo "Checking for $file..."
 
-if ! [ -f /app/app.env ]; then
-  touch $file
-  echo "file "$file" exists!"
-  source /app/app.env
+if [ ! -f "$file" ]; then
+  echo "Creating missing app.env file."
+  touch "$file"
+else
+  echo "Found $file, sourcing it."
 fi
 
+# Load environment variables from app.env
+set -a
+. "$file"
+set +a
 
-source /app/app.env
+echo "run db migration"
 /app/migrate -path /app/migration -database "$DB_SOURCE" -verbose up 
 
 echo "start the app"
