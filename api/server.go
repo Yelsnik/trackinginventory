@@ -32,6 +32,7 @@ func (server *Server) setUpRouter() {
 
 	authRoutes.POST("/inventory", server.createInventory)
 	authRoutes.GET("/inventory/:id", server.getInventory)
+	authRoutes.GET("/inventory", server.getAllInventory)
 
 	router.POST("/users", server.createUser)
 	router.POST("/users/login", server.loginUser)
