@@ -5,6 +5,7 @@ go 1.22.5
 require (
 	github.com/aead/chacha20poly1305 v0.0.0-20170617001512-233f39982aeb
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gin-contrib/cors v1.7.2
 	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.6.0

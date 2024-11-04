@@ -6,6 +6,7 @@ import (
 	db "github.com/Yelsnik/trackinginventory/db/sqlc"
 	"github.com/Yelsnik/trackinginventory/token"
 	"github.com/Yelsnik/trackinginventory/util"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,6 +23,10 @@ func errorResponse(err error) gin.H {
 
 func (server *Server) setUpRouter() {
 	router := gin.Default()
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	router.Use(cors.New(config))
 
 	authRoutes := router.Group("/").Use(authMiddleware(server.tokenMaker))
 

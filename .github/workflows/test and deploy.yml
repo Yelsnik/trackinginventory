@@ -54,6 +54,7 @@ jobs:
     - name: Test
       run: make test
   
+  # deploy
   build:
     name: Deploy
     needs: test
