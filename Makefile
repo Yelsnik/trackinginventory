@@ -8,7 +8,7 @@ dropdb:
 	docker exec -it postgres14 dropdb tracking_inventory
 
 migrateup:
-	migrate -path db/migration -database "postgresql://root:gJdMA1qKEm5JL2W4zAmf@tracking-inventory.c3kou0iw8g5f.eu-north-1.rds.amazonaws.com:5432/tracking_inventory" -verbose up
+	migrate -path db/migration -database "postgresql://root:NlEJjxQQsAQzAawwDCpc9fWI0RXjNz0N@dpg-csjq3adsvqrc73ev90s0-a.oregon-postgres.render.com/tracking_inventory" -verbose up
 
 migratedown:
 	migrate -path db/migration -database "postgresql://root:mahanta@localhost:5432/tracking_inventory?sslmode=disable" -verbose down
