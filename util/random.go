@@ -58,8 +58,7 @@ func RandomUUID() uuid.UUID {
 	return uuid
 }
 
-/*
-func RandomUUID() (id *uuid.UUID, err error) {
+func RandomUUIDR() (id *uuid.UUID, err error) {
 	uuid, err := uuid.NewRandom()
 	if err != nil {
 		return nil, err
@@ -67,4 +66,15 @@ func RandomUUID() (id *uuid.UUID, err error) {
 
 	return &uuid, nil
 }
-*/
+
+func Test() uuid.UUID {
+	id, _ := RandomUUIDR()
+
+	return *id
+}
+
+func RandomRole() string {
+	roles := []string{"seller", "admin", "buyer"}
+	n := len(roles)
+	return roles[rand.Intn(n)]
+}
