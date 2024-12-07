@@ -86,7 +86,7 @@ type Matcher interface {
 	// Matches returns whether x is a match.
 	Matches(x interface{}) bool
 
-	// String describes what the matcher matches.
+	// String describes what the matcher match.
 	String() string
 }
 
